@@ -6,6 +6,6 @@
 #include <cmath>
 #include <algorithm>
 
-bool cmpDouble(double a, double b); 
+bool cmpDouble(real_t a, real_t b); 
 
 #endif
