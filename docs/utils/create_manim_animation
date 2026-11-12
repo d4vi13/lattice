@@ -1,0 +1,39 @@
+Crie um script completo em Python usando Manim Community Edition (v0.18+) para ilustrar [TEMA / CONCEITO MATEMÁTICO OU ALGORÍTMICO].
+
+### 1. Regras de Nomenclatura e Estrutura do Arquivo
+- **Padrão obrigatório:** Todos os nomes de arquivos, classes, funções auxiliares, variáveis e parâmetros devem estar estritamente em `camelCase` (ex.: `meuArquivo.py`, `minhaAnimacao`, `minhaThumbnail`).
+- **Estrutura de cenas:** O arquivo deve conter duas classes de cena independentes:
+  1. `[nomeDoTema]Animation(Scene)`: A animação explicativa completa com ritmo pausado e didático (duração estimada entre 25s e 45s).
+  2. `[nomeDoTema]Thumbnail(Scene)`: Uma cena estática otimizada para renderização de capa (`manim -qh -s`), sem animações (`self.play`), adicionando todos os elementos diretamente via `self.add()`.
+
+### 2. Identidade Visual e Paleta de Cores (Estilo Dark Slate)
+Mantenha rigorosamente a seguinte paleta de cores e hierarquia visual:
+- **Fundo (`background_color`):** `#0f172a` (Azul-ardósia escuro).
+- **Elementos de Fundo / Grade / Pontos Secundários:** `#475569` ou `#64748b` (Cinza-ardósia neutro, com `radius` pequeno ou baixa opacidade para não competir com o foco principal).
+- **Texto Principal e Origem:** `WHITE` (`#ffffff`).
+- **Subtítulos e Anotações Secundárias:** `#94a3b8`.
+- **Vetores / Elementos de Entrada (Base / Estado Inicial):** `#38bdf8` (Azul ciano) e `#818cf8` (Índigo suave).
+- **Elemento Alvo / Restrição / Erro / Destaque de Alerta:** `#f43f5e` (Rosa/Vermelho coral) ou `#f59e0b` / `#fbbf24` (Âmbar/Dourado).
+- **Solução / Resultado Ótimo / Destaque Positivo:** `#10b981` (Verde esmeralda).
+- **Banner Superior (apenas na Thumbnail):** Retângulo no topo (`width=14.2, height=1.6`) com `fill_color="#020617"` e `fill_opacity=0.85`.
+
+### 3. Tipografia e Layout
+- **Títulos na Animação:** `Text(..., font_size=36, color=WHITE)` alinhado ao topo (`.to_edge(UP, buff=0.4)`), seguido imediatamente por um subtítulo matemático em `MathTex(..., font_size=26 a 28, color="#94a3b8")`.
+- **Notação Matemática:** Use `MathTex` com vetores em negrito (`\mathbf{v}`, `\mathbf{t}`, `\mathbf{b}_1`) e conjuntos em caligráfico (`\mathcal{L}`). Garanta que os rótulos nunca se sobreponham às linhas, setas ou pontos usando `.next_to(..., buff=0.1 a 0.25)`.
+- **Layout da Thumbnail:**
+  - Banner superior contendo: Sigla/Título curto em destaque (`font_size=64, weight=BOLD`), nome completo do conceito (`font_size=38, weight=BOLD, color=WHITE`) e a fórmula-chave à direita (`font_size=44 a 48`).
+  - Área central ocupada pela representação visual limpa, com traços mais espessos (`stroke_width` entre `5` e `8`) e pontos maiores (`radius` entre `0.10` e `0.13`) para legibilidade em telas pequenas.
+
+### 4. Roteiro Visual e Ritmo da Animação (Cadência Mais Lenta)
+Desenvolva a cena `[nomeDoTema]Animation` priorizando clareza e tempo de leitura entre cada etapa, seguindo esta sequência:
+1. **Introdução (`run_time=1.5` a `2.0`):** Escrita pausada do título (`Write`) e surgimento do subtítulo (`FadeIn`), seguidos por `self.wait(1.2)` para leitura da definição matemática.
+2. **Construção do Espaço (`run_time=1.8` a `2.2`):** Exibição gradual do domínio/grade/estrutura base (`lag_ratio=0.025`) e marcação da origem ou estado inicial, seguidos de `self.wait(1.0)`.
+3. **Apresentação do Problema (`run_time=1.5` cada elemento):** Inserção sequencial (um por vez, evitando agrupar tudo no mesmo `self.play`) dos vetores/objetos de entrada com `GrowArrow` ou `Create` e seus respectivos rótulos, finalizando com `self.wait(1.5)` antes de iniciar a resolução.
+4. **Dinâmica de Busca / Transformação (`run_time=3.5` a `4.5`):** Use `ValueTracker` acoplado a `.add_updater()` para animar lentamente a busca, expansão/contração de métricas, projeções ou transições (`rate_func=smooth`), lembrando de chamar `.clear_updaters()` ao final e adicionar `self.wait(1.0)` no instante em que a condição ótima é atingida.
+5. **Conclusão Visual (`run_time=1.5` a `2.0`):** Destaque gradual da solução ótima em verde esmeralda (`#10b981`), exibição de linhas auxiliares tracejadas (`DashedLine`) se houver medida de erro/distância, aplicação de `Indicate(..., scale_factor=1.15 a 1.4, run_time=1.5)` e encerramento com uma pausa longa de `self.wait(3.0)`.
+
+### 5. Detalhes Específicos Deste Roteiro
+- **Conceito a ilustrar:** [Descreva aqui o que acontece matematicamente/visualmente]
+- **Elementos de entrada:** [Ex.: Dois vetores base, uma matriz 2x2, um grafo, uma função...]
+- **Métrica ou processo animado:** [Ex.: Bola Euclidiana reduzindo raio, projeção ortogonal, gradiente descendente...]
+- **Resultado destacado:** [Ex.: Vetor reduzido, ponto estacionário, caminho mínimo...]
