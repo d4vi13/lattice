@@ -3,4 +3,4 @@ bin/*
 compile_commands.json
 *.swp
 .cache/*
-__pycache__/*
+__pycache__
